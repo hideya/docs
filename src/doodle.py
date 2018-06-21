@@ -20,10 +20,13 @@ def eval_input_fn(training_dir, params):
 
 def _input_fn(data_dir, params, is_training):
     """
-    学習/評価時の入力データを返します
+    学習/評価時の入力データ（ハイパーパラメータ）を返します
 
     S3上のTFRecordファイルが`data_dir`にマウントされているので
     読み込んでシャッフルしたり前処理してデータを返します
+    
+    シャッフルのバッファサイズなどをハイパーパラメータとして与えて
+    切り替えられるようにしておくと、コードの修正なしに入力データを調整できます
     """
     batch_size  = params.get('batch_size', 96)
     buffer_size = params.get('shuffle_buffer_size', 4096)
@@ -31,9 +34,11 @@ def _input_fn(data_dir, params, is_training):
     train_file  = params.get('train_tfrecord_file', 'train.tfr')
     test_file   = params.get('test_tfrecord_file', 'test.tfr')
 
+    # 学習用データのパス
     tfrecord = os.path.join(data_dir,
         train_file if is_training else test_file)
 
+    # TFrecordを読み込み、シャッフルやリピートなどを行います
     return (tf.data.TFRecordDataset(tfrecord, compression_type=cmp_type)
         .map(_parse_example)
         .shuffle(buffer_size)
@@ -45,7 +50,8 @@ def _input_fn(data_dir, params, is_training):
 def _parse_example(example):
     """
     Example Protoをパースする関数です
-    TFRecordの各レコードはExampleにエンコードしてあります
+    TFRecordの各レコードはtf.train.Exampleにエンコードしてあるので
+    これをパースします
     """
     features = tf.parse_single_example(example,  {
         'image': tf.FixedLenFeature([28, 28, 1], tf.float32),
@@ -57,6 +63,15 @@ def _parse_example(example):
 def serving_input_fn(params):
     """
     サービング時の入力形式を定義します
+    
+    推論用の入力データ形式の定義を行います（これはAPIサーバにデプロイしない場合も必要です）
+    
+    以下では、入力データは、キーをimageとし、浮動小数型のテンソルであることを定義しています
+    [None, 28, 28, 1]は、データの形状を示しています
+
+    TensorFlowで扱われるデータは全て Tensor (テンソル) です
+    この場合、imageテンソルはランク4のテンソルで、プログラム上では4次元配列で表現されます
+    各次元の長さは、None (可変長)、28、28、1です
     """
     return tf.estimator.export.build_raw_serving_input_receiver_fn({
         'image': tf.placeholder(tf.float32, [None, 28, 28, 1], name='image')
@@ -70,7 +85,7 @@ def model_fn(features, labels, mode, params):
     # ハイパーパラメータを取得します
     #=========================================================
     num_classes   = params.get('num_classes', 10)
-    batch_size    = params.get('batch_size', 96)
+    batch_size    = params.get('batch_size', 100)
     learning_rate = params.get('learning_rate', 1e-4)
     init_stddev   = params.get('initializer_normal_stddev', 0.09)
     dropout_rate  = params.get('dropout_rate', 0.4)
