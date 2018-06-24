@@ -10,7 +10,7 @@
 
 - `doodle.ipynb`: 落書き認識アプリを作る Jupyter ノートブックです
 
-- `model.ipynb`: 上記ノートブックで用いたディープラーニングの実装について少し詳しい解説です
+- `model.ipynb`: 上記ノートブックで用いたディープラーニングの実装について、少し詳しい解説です
 
 `src`ディレクトリ以下に、モデルの構築等を行う Python のソースコードが含まれています。
 
@@ -19,10 +19,9 @@
 - [Amazon Web Service](https://aws.amazon.com/) のアカウントと初歩的な利用経験
   （ご参考「[AWS アカウント作成の流れ](https://aws.amazon.com/jp/register-flow/)」）
 
-- ニューラルネットワーク・深層学習に関する基礎的な知識
+- ニューラルネットワーク / ディープラーニング（深層学習）に関する基礎的な知識
   （ご参考「[AIとは？AI（人工知能）とDeep Learning（深層学習）を簡単に説明](https://www.optim.cloud/blog/ai/ai-deeplearning/)」、
-  「[これから始める人の為のディープラーニング基礎講座](https://www.slideshare.net/NVIDIAJapan/ss-71043984)」、
-  [ディープラーニングに入門するためのリソース集と学習法](https://qiita.com/keitakurita/items/df3a07135c9cfad810c7)」）
+  「[これから始める人の為のディープラーニング基礎講座](https://www.slideshare.net/NVIDIAJapan/ss-71043984)」）
 
 - Jupyter Notebook に関する基礎的な知識
   （ご参考「[機械学習の現場で重宝する多機能WebエディタJupyter Notebookの基本的な使い方](https://goo.gl/PozicA)」）
