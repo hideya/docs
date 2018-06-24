@@ -6,13 +6,28 @@
 
 ご参考：ハンズオンの募集ページ（募集は終了しました）： https://lab-kadokawa50.peatix.com/  
 
+## このハンズオンの概要
+
+Google が ["the Quick, Draw!"データセット](https://quickdraw.withgoogle.com/data) として公開している多量の落書きの画像データを用いてニューラルネットワークを訓練し、何の落書きかを分類できるニューラルネットを生成します。そしてその学習済みニューラルネットワークを組み込んだ、落書きの分類をする Web App を作成します。以下は、最終的な Web App のスクリーンショットです。実際のアプリは [ここをクリックすることで](https://tfjs-doodle-recognition-pwa.netlify.com/) 実行できます。
+
+![](./img/a1.png)
+
+ニューラルネットワークのモデルとしては、手書き数字（[MNIST](https://en.wikipedia.org/wiki/MNIST_database)）の認識で実績のある [Convolutional Neural Network (CNN) ](https://en.wikipedia.org/wiki/Convolutional_neural_network) を用います。
+
+モデルの構築と学習には、[AWS SageMaker](https://aws.amazon.com/jp/sagemaker/) 上で、
+[TensorFlow](https://www.tensorflow.org/) を使用します。
+
+Web App の構築には、JavaScript でニューラルネットワークの実装とブラウザ上での実行を可能とする [TensorFlow.js](https://js.tensorflow.org/) を利用します。
+
+なお、このハンズオンでニューラルネットワークの学習を行う際、AWS のアカウントに対して数十円の課金が発生します。
+
 ## 内容物
 
 - `doodle.ipynb`: 落書き認識アプリを作る Jupyter ノートブックです
 
 - `model.ipynb`: 上記ノートブックで用いたディープラーニングの実装について、少し詳しい解説です
 
-`src`ディレクトリ以下に、モデルの構築等を行う Python のソースコードが含まれています。
+- `src`ディレクトリ以下: モデルの構築等を行う Python のソースコードが含まれています
 
 ## 事前に必要なもの
 
@@ -79,6 +94,9 @@
   **Files** のリストで、フォルダ `doodle-sagemaker-master` をクリックし、
   その中にある、`doodle.ipynb` をクリックします。
   ノートブックが開く際「Kernel not found」と表示されたら、
-  `conda_tensorflow_p36` を選択し、「**Set kernel**」をクリックします。
+  `conda_tensorflow_p36` を選択し、「**Set kernel**」をクリックします。<br/>
+  画像の読み込みに、少々時間がかかる場合があります（1分程度）。
+  「プロジェクトの概要」にスクリーンショットが表示されるまで待ちます
+  （読み込みが完全に終わらないと、コマンドが実行できません）。
 
 10. 以降は、ノートブックの内容にしたがって、ハンズオンを進めてください。
