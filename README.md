@@ -8,9 +8,9 @@
 
 ## このハンズオンの概要
 
-Google が ["the Quick, Draw!"データセット](https://quickdraw.withgoogle.com/data) として公開している多量の落書きの画像データを用いてニューラルネットワークを訓練し、何の落書きかを分類できるニューラルネットを生成します。そしてその学習済みニューラルネットワークを組み込んだ、落書きの分類をする Web App を作成します。以下は、最終的な Web App のスクリーンショットです。実際のアプリは [ここをクリックすることで](https://tfjs-doodle-recognition-pwa.netlify.com/) 実行できます。
+Google が ["the Quick, Draw!"データセット](https://quickdraw.withgoogle.com/data) として公開している多量の落書きの画像データを用いてニューラルネットワークを訓練し、何の落書きかを認識するニューラルネットを生成します。そしてその学習済みニューラルネットワークを組み込んだ、落書きの分類をする Web App を作成します。以下は、最終的な Web App のスクリーンショットです。実際のアプリは [ここをクリックすることで実行](https://tfjs-doodle-recognition-pwa.netlify.com/) できます。
 
-![](./img/a1.png)
+![](https://i.imgur.com/G6g18ap.png)
 
 ニューラルネットワークのモデルとしては、手書き数字（[MNIST](https://en.wikipedia.org/wiki/MNIST_database)）の認識で実績のある [Convolutional Neural Network (CNN) ](https://en.wikipedia.org/wiki/Convolutional_neural_network) を用います。
 
@@ -61,7 +61,7 @@ Web App の構築には、JavaScript でニューラルネットワークの実�
 1. 「**ノートブックインスタンス名 Notebook instance name**」には適当な名前を入力します。
   「**ノートブックインスタンスのタイプ Notebook instance type**」は「t2.medium」（最小・デフォルト）を選択します。
   このインスタンス・タイプには、申し込み後最初の 2 か月間は 250 時間の無料枠があります
-  （2018年6月時点での情報です。
+  （2018年8月時点での情報です。
   ご参考：「[Amazon SageMaker の料金](https://aws.amazon.com/jp/sagemaker/pricing/)」）。
   その他もデフォルトのままでOKです。
   「**ノートブックインスタンスの作成 Create notebook instance**」ボタンをクリックします。
